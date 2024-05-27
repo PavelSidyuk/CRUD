@@ -12,7 +12,6 @@ module.exports = async (res, req) => {
             parsedBody.forEach((value, key) => {
                 updatedData[key] = key === 'age' ? parseInt(value) : value
             });
-            console.log(updatedData);
             let user = await data.updateUser(id, updatedData);
             if (user) {
                 res.writeHead(200);
