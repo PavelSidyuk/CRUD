@@ -1,8 +1,8 @@
-const data = require("../../sql3-data");
+import {getUserById} from '../../sql3-data';
 
-module.exports = async (res, req) => {
+module.exports = async (req, res) => {
     const id = parseInt(req.url.split('/')[2]);
-    const user = await data.getUserById(id);
+    const user = await getUserById(id);
     if (user) {
         res.writeHead(200);
         res.end(JSON.stringify(user));

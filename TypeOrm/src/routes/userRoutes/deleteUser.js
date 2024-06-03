@@ -1,13 +1,14 @@
-const data = require("../../sql3-data");
-
+import {deleteUser} from '../../sql3-data';
+const url = require("url");
 module.exports = async (res, req) => {
     const id = parseInt(req.url.split('/')[2]);
-    const user = await data.getUserById(id);
-    if (user) {
-        res.writeHead(200);
-        res.end(JSON.stringify(user));
+    let success = await deleteUser(id);
+    if (success) {
+        res.writeHead(204);
+        res.end();
     } else {
         res.writeHead(404);
         res.end(JSON.stringify({onmessage: 'user not found'}));
+
     }
 }
